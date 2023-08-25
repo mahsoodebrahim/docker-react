@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: ./ # The build context for this service is the ./ directory
+      dockerfile: Dockerfile.dev # Specify the name of the Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./:/app
+  tests:
+    build:
+      context: ./ # The build context for this service is the ./ directory
+      dockerfile: Dockerfile.dev # Specify the name of the Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./:/app
+    command: ["npm", "test"]
